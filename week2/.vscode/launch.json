@@ -5,19 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Functions",
-      "request": "launch",
       "type": "node",
-      "runtimeArgs": [
-        "-r",
-        "${workspaceFolder}/node_modules/tsconfig-paths/register"
-      ],
-      "args": ["${workspaceFolder}/src/index.ts"],
-      "cwd": "${workspaceFolder}",
-      "protocol": "inspector",
-      "env": {
-        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
-      },
+      "request": "launch",
+      "name": "Launch Program",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/index.ts",
+      "sourceMaps": true,
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
       "preLaunchTask": "npm: build"
     }
