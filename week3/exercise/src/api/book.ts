@@ -7,7 +7,7 @@ const bookRouter = Router();
 bookRouter.get("/", (req : Request, res : Response) => {
     try {
         const filter = req.query.title ? { title: req.query.title as string } : undefined;
-        console.log('Filter object:', filter);
+        // console.log('Filter object:', filter);
         
         const books = bookStorage.getAll(filter);
         res.send(books);

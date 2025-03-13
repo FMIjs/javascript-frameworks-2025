@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="load-data">Load data</button>
+
+
+  <script>
+    document.getElementById('load-data').addEventListener('click', function() {
+      fetch("http://localhost:3000/api/books")
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        });
+    });
+  </script>
+</body>
+</html>
