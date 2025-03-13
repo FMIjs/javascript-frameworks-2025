@@ -1,6 +1,6 @@
 import { Observable, Subject, take, takeUntil, tap } from "rxjs";
 
-const destroy$ = new Subject();
+const destroy$$ = new Subject();
 const numbers$ = new Observable<number>((observer) => {
   observer.next(1);
   observer.next(2);
@@ -17,12 +17,12 @@ const numbers$ = new Observable<number>((observer) => {
 
 export function init(){
   numbers$.pipe(take(1)).subscribe((v) => console.log(`first subscribe: ${v}`));
-  numbers$.pipe(takeUntil(destroy$)).subscribe((v) => console.log(`second subscribe: ${v}`));
+  numbers$.pipe(takeUntil(destroy$$)).subscribe((v) => console.log(`second subscribe: ${v}`));
 }
 
 export function destroy(){
-  destroy$.next('whatever');
-  destroy$.complete();
+  destroy$$.next('whatever');
+  destroy$$.complete();
 }
 
 // of(1, 2, 3)
