@@ -1,11 +1,29 @@
+import { catchError, of } from "rxjs";
 import { fetchResource } from "../helpers/fetch";
 
+const API_URL = "/api";
+
 export class TaskService {
-  getTasks = () => fetchResource({ url: `/api/tasks`, method: "GET" });
+  getTasks = () => fetchResource({ 
+    url: `${API_URL}/tasks`, 
+    method: "GET",
+  }).pipe(
+    catchError((error) => {
+      console.error("Error fetching tasks:", error);
+      return of([]);
+    })
+  );
 
-  addTask = (body: { task: string }) =>
-    fetchResource({ url: `/api/tasks/add`, method: "POST", body });
+  addTask = (name: string) =>
+    fetchResource({ 
+      url: `${API_URL}/tasks`, 
+      method: "POST", 
+      body: { name },
+    });
 
-  deleteTask = (body: { task: string }) =>
-    fetchResource({ url: `/api/tasks`, method: "DELETE", body });
+  deleteTask = (taskId: number ) =>
+    fetchResource({ 
+      url: `${API_URL}/tasks/${taskId}`, 
+      method: "DELETE", 
+    });
 }

@@ -1,7 +1,7 @@
 import { mergeMap, throwError } from "rxjs";
 import { fromFetch } from "rxjs/fetch";
 
-const apiServer = "http://localhost:8080/api";
+const apiServer = "http://localhost:3000/api";
 
 type FetchParams = Parameters<typeof fromFetch>;
 

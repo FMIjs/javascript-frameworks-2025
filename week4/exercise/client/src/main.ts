@@ -1,6 +1,6 @@
 import { AppRoot } from "./app-root";
 
-// Define the custom element
+// Define the custom element - same as @customElement('task-form')
 customElements.define('app-root', AppRoot);
 
 // Create and append the element using the custom element tag

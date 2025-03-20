@@ -1,18 +1,24 @@
 import { Routes } from "@lit-labs/router";
 import { LitElement, html } from "lit";
+import "./task-list";
+import "./task-form";
 
 export class AppRoot extends LitElement {
   private _routes = new Routes(this, [
     {
       path: "/",
       render: () => {
-        return html`<h1>Tasks</h1>`;
+        return html`
+          <task-list></task-list>
+        `;
       },
     },
     {
-      path: "/add",
+      path: "/todos",
       render: () => {
-        return html`<h1>Add New Task</h1>`;
+        return html`
+          <h1>TODO some other page</h1>
+        `;
       },
     },
   ]);
@@ -21,7 +27,6 @@ export class AppRoot extends LitElement {
     if (!("detail" in event) || typeof event.detail !== "string") return;
     this._routes.goto(event.detail);
   };
-
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -38,10 +43,10 @@ export class AppRoot extends LitElement {
     return html`
       <header>
         <a href="/">TASKS</a>
-        <a href="/add">ADD NEW</a>
+        <a href="/todos">TODOS</a>
       </header>
       <main>${this._routes.outlet()}</main>
-      <footer>APP FOOTER</footer>
+      <footer>Some footer content here</footer>
     `;
   }
 }
