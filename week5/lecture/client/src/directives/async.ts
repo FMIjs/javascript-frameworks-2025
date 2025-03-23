@@ -1,32 +1,38 @@
-import { directive, Directive, PartInfo, PartType } from "lit/directive.js";
-import { Observable, Subscription } from "rxjs";
+import {
+  directive,
+  AsyncDirective,
+  PartInfo,
+  PartType,
+} from "lit/async-directive.js";
+import type { Observable, Subscription } from "rxjs";
 
-class AsyncDirective extends Directive {
-  value: any;
-  subscription: Subscription | undefined;
+class ObservableValueDirective extends AsyncDirective {
+  private subscription?: Subscription;
+  private value: unknown;
 
   constructor(partInfo: PartInfo) {
     super(partInfo);
-    if (partInfo.type === PartType.CHILD) return;
-    throw new Error("async() can only be used in child bindings");
+    if (partInfo.type !== PartType.CHILD) {
+      throw new Error("async() can only be used in child bindings");
+    }
   }
 
   render<T>(source$: Observable<T>) {
-    this.subscription =
-      this.subscription ||
-      source$.subscribe({
+    if (!this.subscription) {
+      this.subscription = source$.subscribe({
         next: (value) => {
-          // TODO: try extending Async Directive from lit
-          (this as any).__part._$setValue(value, this);
           this.value = value;
+          this.setValue(value);
         },
       });
+    }
     return this.value;
   }
 
   disconnected() {
     this.subscription?.unsubscribe();
+    this.subscription = undefined;
   }
 }
 
-export const async = directive(AsyncDirective);
+export const async = directive(ObservableValueDirective);

@@ -1,7 +1,6 @@
 import { Routes } from "@lit-labs/router";
 import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
-import { asyncReplace } from "lit/directives/async-replace";
 import { AppLink } from "./app-link";
 import { AppLogin } from "./app-login";
 import { createInstance } from "./directives/create-instance";
@@ -12,6 +11,7 @@ import { Router } from "./services/router.service";
 import { AppStore, User } from "./types";
 import { Store } from "./services/store.service";
 import { filter, map, Observable } from "rxjs";
+import { asyncIf } from "./directives/async-if";
 
 @customElement("app-root")
 export class AppRoot extends LitElement {
@@ -66,8 +66,6 @@ export class AppRoot extends LitElement {
       map(({ firstName, lastName }) => `${firstName} ${lastName}`)
     );
 
-    console.log(async(username$));
-
     return html`
       <header>
         <nav>
@@ -76,7 +74,11 @@ export class AppRoot extends LitElement {
           ${createInstance(AppLink, { to: "/projects" }, "Projects")}
           ${createInstance(AppLink, { to: "/about" }, "About")}
         </nav>
-        <div>${async(username$)}</div>
+        ${asyncIf(
+          username$,
+          (username) => !!username,
+          (username) => html`<div>${username}</div>`
+        )}
       </header>
       <main>${this.router.outlet()}</main>
       <footer>APP FOOTER</footer>
