@@ -1,0 +1,35 @@
+<h1>HELLO WORLD</h1>
+{{ counter }}
+<button (click)="increment()">Increment</button>
+
+Input value: {{ inputValue }}
+
+<!-- <ng-template ngIf="value">
+  <div >
+    
+  </div>
+</ng-template> -->
+
+@if (showInput) {
+<div>
+  <input #input type="text" />
+  <button (click)="setInputValue(input)">Set value</button>
+</div>
+} @else {
+<div>NOT VISIBLE</div>
+}
+
+<ul>
+  @for (user of users; track trackByUsername(user)) {
+  <li>
+    <app-user-item
+      [username]="user.username"
+      [age]="user.age"
+      (test)="log($event)"
+    />
+  </li>
+  } @empty {
+  <div>List is empty</div>
+  }
+</ul>
+<button (click)="toggleShow()">Toggle</button>
