@@ -1,0 +1,13 @@
+<h1>Flower Bed</h1>
+@if(flowers$ | async; as flowers) {
+@if(flowers.length > 0) {
+<div class="flower-container">
+  @for(flower of flowers; track flower.id) {
+  <app-flower [flower]="flower" />
+  }
+</div>
+}
+@else{
+<button (click)="flowerBedService.seedFlowers()">Seed flowers</button>
+}
+}
