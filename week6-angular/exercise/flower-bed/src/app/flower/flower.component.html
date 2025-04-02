@@ -1,7 +1,11 @@
 @if(flower(); as flower) {
 <div class="flower">
-  <div>{{flower?.waterLevel}}</div>
-  <div>{{flower?.color}}</div>
-  <button (click)="water.emit(flower)">Water</button>
+  @for(element of flowerElements; track element; let i = $index) {
+  <div class="flower-element" [style.color]="flower?.color"
+    [style.animation-duration]="((modifier() * 0.02) + 1 + ((i + 1) * 0.05)) + 's'">
+    {{element}}
+  </div>
+  }
+  <button (click)="water.emit(flower)" [disabled]="!canWater">Water</button>
 </div>
 }

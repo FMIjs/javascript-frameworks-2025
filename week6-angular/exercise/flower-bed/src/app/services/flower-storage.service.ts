@@ -4,6 +4,13 @@ import { IFlower } from '../types/flower';
 import { v4 } from 'uuid';
 import { ColorType } from '../types/color-type';
 
+const FLOWER_SEED_COUNT = 3;
+const createFlower = (): IFlower => ({
+    id: v4(),
+    waterLevel: 1,
+    color: 'green',
+})
+
 @Injectable()
 export class FlowerStorageService {
   private flowerStorage = new BehaviorSubject<IFlower[]>([
@@ -11,21 +18,7 @@ export class FlowerStorageService {
 
   seedFlowers() {
     this.flowerStorage.next([
-      {
-        id: v4(),
-        waterLevel: 1,
-        color: 'green',
-      },
-      {
-        id: v4(),
-        waterLevel: 1,
-        color: 'green',
-      },
-      {
-        id: v4(),
-        waterLevel: 1,
-        color: 'green',
-      },
+      ...Array(FLOWER_SEED_COUNT).fill(0).map(createFlower),
     ])
   }
 
@@ -38,7 +31,18 @@ export class FlowerStorageService {
 
     const updatedFlowers = flowers.map(f => f.id === id ? { ...flower, waterLevel} : f);
     this.flowerStorage.next(updatedFlowers);
+  }
 
+  addFlower() {
+    const flowers = this.flowerStorage.getValue();
+    this.flowerStorage.next([...flowers, createFlower()]);
+  }
+
+  trimGrass() {
+    const flowers = this.flowerStorage.getValue();
+    const updatedFlowers = flowers
+      .map(f => ({ ...f, waterLevel: Math.max(f.waterLevel - 2, 0) }));
+    this.flowerStorage.next(updatedFlowers);
   }
 
   updateColor(id: string) {

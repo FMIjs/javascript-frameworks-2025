@@ -2,10 +2,12 @@
 @if(flowers$ | async; as flowers) {
 @if(flowers.length > 0) {
 <div class="flower-container">
-  @for(flower of flowers; track flower.id) {
-  <app-flower [flower]="flower" (water)="waterFlower($event)" />
+  @for(flower of flowers; track flower.id; let i = $index) {
+  <app-flower [flower]="flower" (water)="waterFlower($event)" [modifier]="i" />
   }
 </div>
+<button (click)="flowerBedService.trimGrass()">Trim grass</button>
+<button (click)="flowerBedService.addFlower()">Add flower</button>
 }
 @else{
 <button (click)="flowerBedService.seedFlowers()">Seed flowers</button>
