@@ -3,7 +3,7 @@
 @if(flowers.length > 0) {
 <div class="flower-container">
   @for(flower of flowers; track flower.id) {
-  <app-flower [flower]="flower" />
+  <app-flower [flower]="flower" (water)="waterFlower($event)" />
   }
 </div>
 }

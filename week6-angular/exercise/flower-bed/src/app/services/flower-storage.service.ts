@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IFlower } from '../types/flower';
 import { v4 } from 'uuid';
+import { ColorType } from '../types/color-type';
 
 @Injectable()
 export class FlowerStorageService {
@@ -13,17 +14,17 @@ export class FlowerStorageService {
       {
         id: v4(),
         waterLevel: 1,
-        color: 1,
+        color: 'green',
       },
       {
         id: v4(),
         waterLevel: 1,
-        color: 1,
+        color: 'green',
       },
       {
         id: v4(),
         waterLevel: 1,
-        color: 1,
+        color: 'green',
       },
     ])
   }
@@ -31,19 +32,32 @@ export class FlowerStorageService {
   updateWaterLevel(id: string, waterLevel: number) {
     const flowers = this.flowerStorage.getValue();
     const flower = flowers.find(f => f.id === id);
-    if (flower) {
-      flower.waterLevel = waterLevel;
+    if(!flower){
+      throw new Error('Flower not found');
     }
-    this.flowerStorage.next(flowers);
+
+    const updatedFlowers = flowers.map(f => f.id === id ? { ...flower, waterLevel} : f);
+    this.flowerStorage.next(updatedFlowers);
+
   }
 
-  updateColor(id: string, color: number) {
+  updateColor(id: string) {
     const flowers = this.flowerStorage.getValue();
     const flower = flowers.find(f => f.id === id);
-    if (flower) {
-      flower.color = color;
+    if(!flower){
+      throw new Error('Flower not found');
     }
-    this.flowerStorage.next(flowers);
+    let color : ColorType;
+    if (flower.waterLevel <= 5) {
+      color = 'green';
+    } else if (flower?.waterLevel <= 10) {
+      color = 'yellow';
+    } else {
+      color = 'brown';
+    }
+
+    const updatedFlowers = flowers.map(f => f.id === id ? { ...flower, color} : f);
+    this.flowerStorage.next(updatedFlowers);
   }
 
   getFlowers() {

@@ -1,6 +1,7 @@
-@if(flower()) {
+@if(flower(); as flower) {
 <div class="flower">
-  <div>{{flower()?.waterLevel}}</div>
-  <div>{{flower()?.color}}</div>
+  <div>{{flower?.waterLevel}}</div>
+  <div>{{flower?.color}}</div>
+  <button (click)="water.emit(flower)">Water</button>
 </div>
 }

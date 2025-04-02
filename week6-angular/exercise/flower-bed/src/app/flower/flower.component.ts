@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { IFlower } from '../types/flower';
 
 @Component({
@@ -9,4 +9,9 @@ import { IFlower } from '../types/flower';
 })
 export class FlowerComponent {
   flower = input<IFlower | null>(null);
+  water = output<IFlower>();
+
+  get flowerElements() {
+    return Array(this.flower()?.waterLevel).fill(0).map((_, index) => index);
+  }
 }
