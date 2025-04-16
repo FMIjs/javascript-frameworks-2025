@@ -1,0 +1,1 @@
+export const FLOWER_STORAGE_KEY = 'flower-storage';
