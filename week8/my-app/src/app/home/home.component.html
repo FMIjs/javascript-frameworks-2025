@@ -1,0 +1,19 @@
+<p>home works!</p>
+
+<!-- {{ time$ | async }} -->
+<button #reloadButton>Reload users</button>
+@if(loading$ | async) {
+<div>Loading...</div>
+} 
+
+
+@if(myTestCmp.test === 'HELLO') {
+  <div>MY TEST HELLO</div>
+}
+
+<ul>
+  @for (user of (users$ | async) || []; track user.id) {
+  <li>{{ user.name }} ({{ user.email }})</li>
+  }
+</ul>
+<app-test #myTestCmp [value]="14" />

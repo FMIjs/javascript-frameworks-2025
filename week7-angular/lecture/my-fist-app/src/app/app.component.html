@@ -1,0 +1,35 @@
+<!-- @if(!isLoggedIn) {
+<div>
+  <button (click)="login()">Login with Azure</button>
+</div>
+} @else {
+<div>
+  <p>Welcome, {{ username }}</p>
+  <button (click)="logout()">Logout</button>
+</div>
+} -->
+
+<!-- <ng-template #myTemplate let-test>
+  <h1>{{test}}</h1>
+</ng-template> -->
+
+<!-- <ng-template [appMyIf]="show" let-myValue>
+  <div>HELLO {{ myValue }}</div>
+</ng-template> -->
+
+<!-- <button appMyButton title="123" #myButton>SADAS</button>
+
+<div *appMyIf="show; let myVal = myValue">TEST {{ myVal }}</div>
+
+<ul> -->
+<!-- <li *ngFor="let str of stringArray; let i = index">{{ i + 1 }}. {{ str }}</li> -->
+<!-- <ng-template appMyFor [appMyForOf]="stringArray" let-str let-i="index">
+    <li>{{ i + 1 }}. {{ str }}</li>
+  </ng-template>
+</ul>
+
+<button (click)="toggleShow()">Toggle</button> -->
+<input type="text" [(ngModel)]="myInputValue" />
+{{ myOtherValue() }}
+
+{{ currentDate | test : "MM-dd-YY" : "dsadsa" : "dsada" }}
