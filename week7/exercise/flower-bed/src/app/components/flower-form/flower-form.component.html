@@ -1,0 +1,28 @@
+<form [formGroup]="flowerForm" (ngSubmit)="submitFlower()" class="form">
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Color</mat-label>
+      <mat-select formControlName="color">
+        @for (color of availableColors; track color) {
+        <mat-option [value]="color">{{color}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Water Level</mat-label>
+      <input matInput formControlName="waterLevel" />
+      @if (flowerForm.controls.waterLevel.hasError('required')) {
+      <mat-error>This field is required</mat-error>
+      }
+      @if (flowerForm.controls.waterLevel.hasError('min')) {
+      <mat-error>Water level must be at least 0</mat-error>
+      }
+      @if (flowerForm.controls.waterLevel.hasError('max')) {
+      <mat-error>Water level must be at most 10</mat-error>
+      }
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>
