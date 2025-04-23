@@ -1,0 +1,32 @@
+<h1>Flower Bed</h1>
+@if(flowers$ | async; as flowers) {
+<div class="main-container">
+  <div class="toolbar">
+
+    <button (click)="addFlower()">Add flower</button>
+    @if(flowers.length <= 0) {
+      <button (click)="seedFlowers()">Seed flowers</button>
+    }
+  </div>
+  <div class="container">
+    <div class="left">
+      <router-outlet />
+    </div>
+    <div class="right">
+      @if(flowers.length > 0) {
+
+      <div class="flower-container">
+        @for(flower of flowers; track flower.id; let i = $index) {
+        <app-flower [flower]="flower" (water)="waterFlower($event)" [modifier]="i" />
+        }
+      </div>
+      <button [disabled]="!(canTrimGrass$ | async)" (click)="trimGrass()">Trim grass</button>
+
+      }
+      @else{
+      Loading...
+      }
+    </div>
+  </div>
+</div>
+}
