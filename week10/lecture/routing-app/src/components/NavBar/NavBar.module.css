@@ -1,0 +1,41 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--nav-background);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+}
+
+.navbar a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.themeToggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: auto;
+  color: var(--text-color);
+  transition: transform 0.3s ease;
+}
+
+.themeToggle:hover {
+  transform: scale(1.1);
+}
