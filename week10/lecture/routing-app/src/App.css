@@ -1,0 +1,40 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: 5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+/* Dark mode styles */
+:root.dark-mode {
+  --background-color: #1a1a1a;
+  --text-color: #ffffff;
+  --nav-background: #2d2d2d;
+  --card-background: #333333;
+  --border-color: #444444;
+}
+
+/* Light mode styles (default) */
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --nav-background: #f8f9fa;
+  --card-background: #ffffff;
+  --border-color: #dee2e6;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+}
