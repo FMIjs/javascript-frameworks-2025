@@ -1,4 +1,8 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, ReactNode, useContext, useState } from "react";
+
+type ThemeProviderProps = {
+  children: ReactNode;
+};
 
 type ThemeContextType = {
   isDarkMode: boolean;
@@ -13,11 +17,7 @@ export const useTheme = () => {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
-};
-
-type ThemeProviderProps = {
-  children: ReactNode;
-};
+}
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [isDarkMode, setIsDarkMode] = useState(false);

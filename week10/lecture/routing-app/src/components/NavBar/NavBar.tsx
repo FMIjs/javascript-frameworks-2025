@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from '../../context/ThemeContext';
+import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.css';
+
 
 function NavBar() {
   const { isDarkMode, toggleTheme } = useTheme();
@@ -8,9 +9,9 @@ function NavBar() {
   return (
     <nav className={styles.navbar}>
       <ul className={styles.navList}>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/dashboard">Dashboard</Link></li>
-        <li><Link to="/something">Something</Link></li>
+        <li><NavLink to="/" className={({ isActive }) => isActive ? styles.active : ''}>Home</NavLink></li>
+        <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? styles.active : ''}>Dashboard</NavLink></li>
+        <li><NavLink to="/shopping-cart" className={({ isActive }) => isActive ? styles.active : ''}>Shopping Cart</NavLink></li>
       </ul>
       <button 
         onClick={toggleTheme}

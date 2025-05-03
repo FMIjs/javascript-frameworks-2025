@@ -3,15 +3,19 @@ import { BrowserRouter } from 'react-router-dom'
 import AppRoutes from './AppRoutes'
 import NavBar from './components/NavBar/NavBar'
 import { ThemeProvider } from './context/ThemeContext'
+import { store } from './app/store'
+import { Provider } from 'react-redux'
 
 function App() {
   return (
+    <Provider store={store}>
     <ThemeProvider>
       <BrowserRouter>
-        <NavBar />
+        <NavBar/>
         <AppRoutes />
       </BrowserRouter>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Provider>
   )
 }
 

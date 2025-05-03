@@ -4,6 +4,11 @@
   padding: 1rem;
   background-color: var(--nav-background);
   border-bottom: 1px solid var(--border-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
 .navList {
@@ -18,6 +23,12 @@
   color: var(--text-color);
   text-decoration: none;
   transition: color 0.3s ease;
+}
+
+.navbar a.active{
+  color: var(--text-color);
+  text-decoration: underline;
+  opacity: 0.8;
 }
 
 .navbar a:hover {
