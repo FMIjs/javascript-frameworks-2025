@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import shoppingCartReducer from "../features/cart/shoppingCart.slice";
+import cubeReducer from "./cube";
+import pyramidReducer from "./pyramid";
 
 
 export const store = configureStore({
   reducer: {
-    shoppingCart: shoppingCartReducer,
+    cube: cubeReducer,
+    pyramid: pyramidReducer
   }
 })
 

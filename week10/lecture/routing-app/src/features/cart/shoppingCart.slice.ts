@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CartItem } from "./card-item";
 
-interface  ShoppingCardState  {
+interface ShoppingCardState {
   cart: CartItem[];
 };
 
@@ -18,12 +18,12 @@ const shoppingCartSlice = createSlice({
       if (existingItem) {
         return {
           ...state,
-          cart: state.cart.map(item => item.id === action.payload.id ? {...item, quantity: item.quantity + 1} : item),
+          cart: state.cart.map(item => item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item),
         };
       }
 
       return {
-        ...state, 
+        ...state,
         cart: [...state.cart, action.payload],
       };
     },

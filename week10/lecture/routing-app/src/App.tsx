@@ -9,11 +9,11 @@ import { Provider } from 'react-redux'
 function App() {
   return (
     <Provider store={store}>
-    <ThemeProvider>
-      <BrowserRouter>
-        <NavBar/>
-        <AppRoutes />
-      </BrowserRouter>
+      <ThemeProvider>
+        <BrowserRouter>
+          <NavBar />
+          <AppRoutes />
+        </BrowserRouter>
       </ThemeProvider>
     </Provider>
   )
