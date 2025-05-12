@@ -1,0 +1,77 @@
+.pyramid-container {
+  width: 300px;
+  height: 350px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.pyramid {
+  width: 200px; /* Base width */
+  height: 200px; /* Base depth */
+  position: relative;
+  transform-style: preserve-3d;
+  /* You might need to adjust the rotation animation for a pyramid */
+  transform: rotateX(-30deg) rotateY(45deg); /* Initial tilt for better view */
+}
+
+.face {
+  position: absolute;
+  width: 200px; /* Corresponds to the base width */
+  height: 200px; /* This will be the "slant height" visually */
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: white;
+  pointer-events: none;
+  /* transform-origin: bottom center; */
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 200px solid rgba(0, 123, 255, 0.7); /* This creates the colored triangle */
+  border-color: transparent;
+  /* color: transparent !important */
+}
+
+.triangle span {
+  position: relative;
+  top: 145px;
+  min-width: 100px;
+  transform: rotateY(180deg);
+  text-align: center;
+}
+
+.base {
+  width: 200px;
+  height: 200px;
+  background-color: rgba(0, 123, 255, 0.7); /* Different color for base if needed */
+  transform: rotateX(90deg) translateZ(-173px); /* Position and rotate the base */
+  transform-origin: center center;
+  border: none !important;
+}
+
+.sideA {
+  /* Tilt and position the side face */
+  transform: rotateX(-30deg) translateZ(0) translateY(100px);
+}
+
+.sideB {
+  /* Rotate around the base edge and tilt */
+  transform: rotateY(90deg) rotateX(-30deg) translateZ(0) translateY(100px);
+}
+
+.sideC {
+  /* Rotate around the base edge and tilt */
+  transform: rotateY(180deg) rotateX(-30deg) translateZ(0) translateY(100px);
+}
+
+.sideD {
+  /* Rotate around the base edge and tilt */
+  transform: rotateY(-90deg) rotateX(-30deg) translateZ(0) translateY(100px);
+}
