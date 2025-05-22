@@ -1,0 +1,76 @@
+{
+  "hash": "db16f94a",
+  "configHash": "c4933b34",
+  "lockfileHash": "401b0e7e",
+  "browserHash": "ed557695",
+  "optimized": {
+    "@angular/common/http": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "137d6704",
+      "needsInterop": false
+    },
+    "@angular/core": {
+      "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "8b2b1cfc",
+      "needsInterop": false
+    },
+    "@angular/forms": {
+      "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
+      "file": "@angular_forms.js",
+      "fileHash": "f0b40fe6",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "c8c1a4eb",
+      "needsInterop": false
+    },
+    "@azure/msal-angular": {
+      "src": "../../../../../../node_modules/@azure/msal-angular/fesm2020/azure-msal-angular.mjs",
+      "file": "@azure_msal-angular.js",
+      "fileHash": "89ea99a3",
+      "needsInterop": false
+    },
+    "@azure/msal-browser": {
+      "src": "../../../../../../node_modules/@azure/msal-browser/dist/index.mjs",
+      "file": "@azure_msal-browser.js",
+      "fileHash": "32cc6a70",
+      "needsInterop": false
+    },
+    "@angular/common": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "0b2c564a",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-MDQ7C3G4": {
+      "file": "chunk-MDQ7C3G4.js"
+    },
+    "chunk-P5JMTLQY": {
+      "file": "chunk-P5JMTLQY.js"
+    },
+    "chunk-LR5JTOV3": {
+      "file": "chunk-LR5JTOV3.js"
+    },
+    "chunk-7BKLOTF3": {
+      "file": "chunk-7BKLOTF3.js"
+    },
+    "chunk-YWGDWJBK": {
+      "file": "chunk-YWGDWJBK.js"
+    },
+    "BrowserPerformanceMeasurement-25X7TBR2": {
+      "file": "BrowserPerformanceMeasurement-25X7TBR2.js"
+    },
+    "chunk-RYSIZJ2D": {
+      "file": "chunk-RYSIZJ2D.js"
+    },
+    "chunk-35ENWJA4": {
+      "file": "chunk-35ENWJA4.js"
+    }
+  }
+}
