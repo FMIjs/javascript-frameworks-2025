@@ -32,7 +32,6 @@ export const useFetch = ({ url }: FetchProps) => {
 
     return () => {
       controller.abort('Component unmounted, aborting fetch');
-      setIsLoading(false)
     }
   }, [url])
 

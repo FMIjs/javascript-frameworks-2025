@@ -9,6 +9,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { saveData } from '../../+store/cube'
 import { ThunkDispatch } from 'redux-thunk'
 
+// import useSWR from 'swr'
+import { useFetch } from '../../hooks/fetch'
+import { v4 } from 'uuid'
+import { useTestData } from '../../hooks/testData'
 import useSWR from 'swr'
 
 type CubeFaceProps = {
@@ -48,7 +52,7 @@ export const CubeFace = ({ cubeFace, side }: CubeFaceProps) => {
 }
 
 
-const fetcher = (url: string) => fetch(url).then(res => res.json())
+// const fetcher = (url: string) => fetch(url).then(res => res.json())
 
 const defaultStartPos = { x: 0, y: 0 }
 export const Cube = () => {
@@ -99,9 +103,18 @@ export const Cube = () => {
   //   isDevRerender.current = false
   // }, [])
 
-  // const { loading, error, data } = useFetch({ url: 'http://localhost:3000/cube' })
+  const { loading, error, data } = useFetch({ url: 'http://localhost:3000/cube' })
 
-  const {data, isLoading: loading, error, mutate } = useSWR('http://localhost:3000/cube', fetcher)
+  // console.log(loading, error, data)
+
+  // const testDataId = useMemo(() => v4(), [])
+  // const { state, setState } = useTestData({ id: testDataId }) // <-- good
+  // const { state, setState } = useTestData({ id: v4() }) // <-- bad
+  const { state, setState } = useTestData({ id: useMemo(() => v4(), []) }) // <-- also good for some reason
+
+  useEffect(() => console.log("Cube", state), [state])
+
+  // const {data, isLoading: loading, error, mutate } = useSWR('http://localhost:3000/cube', fetcher)
 
   useEffect(() => {
     if (!data || loading) return
@@ -148,6 +161,11 @@ export const Cube = () => {
 
   const transform = useMemo(() => `rotateZ(${rotation.z}deg) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`, [rotation])
 
+  const buttonClickHandler = useCallback(() => {
+    const newState = (state || 0) + 1;
+    setState(newState)
+  }, [setState, state])
+
   if (error) return <div>Error: {error}</div>
   if (loading) return <div>Loading...</div>
   return (
@@ -158,7 +176,8 @@ export const Cube = () => {
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
-      <button onClick={() => mutate()}>Refresh</button>
+      {/* <button onClick={() => mutate()}>Refresh</button> */}
+      <button onClick={() => buttonClickHandler()}>Do thing</button>
       <div
         className="cube"
         style={{ transform }}

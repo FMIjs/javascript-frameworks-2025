@@ -1,10 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 
 import './CubeForm.css'
 import { CubeFace, CubeFaceSide } from '../../types'
 import { RootState } from '../../+store';
 import { setFace, setSide, storeData } from '../../+store/cube';
+import { useTestData } from '../../hooks/testData';
+import { v4 } from 'uuid';
 
 export const CubeForm = () => {
   const faceSide = useSelector((state: RootState) => state.cube.side)
@@ -23,6 +25,9 @@ export const CubeForm = () => {
 
   const [text, setText] = useState(face?.text || '')
   const [color, setColor] = useState(face?.color || '')
+
+  const { state } = useTestData({ id: useMemo(() => v4(), []) }) // <-- also good for some reason
+  useEffect(() => console.log("CubeForm", state), [state])
 
   const changeHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
